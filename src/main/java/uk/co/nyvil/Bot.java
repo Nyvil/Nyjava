@@ -58,10 +58,6 @@ public class Bot {
     @Getter
     private static final Bot instance = new Bot();
 
-    private static TextChannel textChannel;
-    private static Role role;
-
-
     public static void main(String[] args) {
         try {
             getInstance().createDir();

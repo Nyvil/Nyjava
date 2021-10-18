@@ -6,7 +6,6 @@ import net.dv8tion.jda.api.JDABuilder;
 import net.dv8tion.jda.api.entities.Activity;
 import uk.co.nyvil.Bot;
 import uk.co.nyvil.bot.commands.manager.SlashCommandHandler;
-import uk.co.nyvil.bot.listeners.ReactionListener;
 import uk.co.nyvil.bot.listeners.ReadyListener;
 
 import javax.security.auth.login.LoginException;
@@ -27,10 +26,9 @@ public class BotConnection {
 
     private void start() {
         try {
-            jda = JDABuilder.createDefault(Bot.getInstance().getToken()).
-                    addEventListeners(new ReadyListener())
+            jda = JDABuilder.createDefault(Bot.getInstance().getToken())
+                    .addEventListeners(new ReadyListener())
                     .addEventListeners(new SlashCommandHandler())
-                    .addEventListeners(new ReactionListener())
                     .setActivity(Activity.watching("Anime ^-^"))
                     .build();
 

@@ -26,4 +26,4 @@ If not you can report it [here](https://github.com/Nyvil/Nyjava/issues)
 * **[Alexandros(@Nyvil)](https://github.com/Nyvil)** - initial work
 
 # License
-This project is licensed under the Apache 2.0 License - see the [LICENSE.md](https://github.com/Nyvil/Nyjava) file for details.
+This project is licensed under the Apache 2.0 License - see the [LICENSE](https://github.com/Nyvil/Nyjava/blob/master/LICENSE) file for details.
