@@ -11,6 +11,7 @@ import net.dv8tion.jda.api.MessageBuilder;
 import net.dv8tion.jda.api.Permission;
 import net.dv8tion.jda.api.entities.*;
 import uk.co.nyvil.bot.BotConnection;
+import uk.co.nyvil.bot.buttons.manager.ButtonHandler;
 import uk.co.nyvil.bot.commands.manager.CommandHandler;
 import uk.co.nyvil.database.DatabaseConnection;
 import uk.co.nyvil.database.utils.DatabaseUtils;
@@ -45,6 +46,8 @@ public class Bot {
     private static List<String> log = new ArrayList<>();
     @Getter
     private CommandHandler commandHandler;
+    @Getter
+    private ButtonHandler buttonhandler;
     @Getter
     private DatabaseConnection databaseConnection;
     @Getter
@@ -83,6 +86,7 @@ public class Bot {
                     FileUtils.setToken(token);
                     botConnection = new BotConnection();
                     commandHandler = new CommandHandler();
+                    buttonhandler = new ButtonHandler();
                     if (getInstance().dbStart) {
                         databaseConnection = new DatabaseConnection();
                     } else {
