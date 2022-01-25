@@ -5,7 +5,10 @@ import net.dv8tion.jda.api.hooks.ListenerAdapter;
 import org.jetbrains.annotations.NotNull;
 import uk.co.nyvil.Bot;
 
-import java.util.Objects;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+import java.util.Map;
+
 
 public class ButtonClickHandler extends ListenerAdapter {
 
@@ -15,10 +18,17 @@ public class ButtonClickHandler extends ListenerAdapter {
         if(event.getUser().isBot()) return;
         if(event.getMember() == null) return;
 
+        String componentID = event.getComponentId();
+        Map<String, ButtonMethods> buttonMap = Bot.getInstance().getButtonhandler().getButtonMap();
+        if (Bot.getInstance().getButtonhandler().getButtonMap().containsKey(componentID)) {
+            ButtonMethods buttonMethod = Bot.getInstance().getButtonhandler().getButtonMap().get(componentID);
+            final Method method = buttonMethod.getMethod();
 
-        if (Bot.getInstance().getButtonhandler().getButtonMap().containsKey(Objects.requireNonNull(event.getButton()).getId())) {
-//TODO: Finish this, computer crashed so I lost a good bit of code
+            try {
+                method.invoke(buttonMethod.getObj(), event);
+            } catch (IllegalAccessException | InvocationTargetException ex) {
+                ex.printStackTrace();
+            }
         }
-
     }
 }
