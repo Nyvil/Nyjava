@@ -4,6 +4,7 @@ import net.dv8tion.jda.api.events.interaction.ButtonClickEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
 import org.jetbrains.annotations.NotNull;
 import uk.co.nyvil.Bot;
+import uk.co.nyvil.bot.buttons.status.ButtonClickInfo;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -25,7 +26,7 @@ public class ButtonClickHandler extends ListenerAdapter {
             final Method method = buttonMethod.getMethod();
 
             try {
-                method.invoke(buttonMethod.getObj(), event);
+                method.invoke(buttonMethod.getObj(), new ButtonClickInfo(event, event.getMember(), event.getTextChannel(), componentID));
             } catch (IllegalAccessException | InvocationTargetException ex) {
                 ex.printStackTrace();
             }
