@@ -25,11 +25,10 @@ public class SlashCommandHandler extends ListenerAdapter {
         if(event.getMember() == null) return;
 
         Bot.getInstance().getCommandHandler().getSlashCommandMap().forEach((commandAnnotation, command) -> {
-            if(commandAnnotation.name().equalsIgnoreCase(event.getName()) && event.getMember().hasPermission(command.neededPermission())) {
+            if(commandAnnotation.name().equalsIgnoreCase(event.getName()) && event.getMember().hasPermission(commandAnnotation.neededPermission())) {
                 SlashCommandExecutionInfo info = new SlashCommandExecutionInfo(command, event, event.getMember(), event.getTextChannel(), commandAnnotation, event.getOptions());
                 command.execute(info);
             }
         });
-
     }
 }

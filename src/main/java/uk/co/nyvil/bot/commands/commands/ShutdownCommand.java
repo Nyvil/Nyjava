@@ -25,9 +25,4 @@ public class ShutdownCommand implements SlashCommand {
         }
 
     }
-
-    @Override
-    public Permission neededPermission() {
-        return Permission.USE_SLASH_COMMANDS;
-    }
 }

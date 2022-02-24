@@ -16,9 +16,4 @@ public class PingCommand implements SlashCommand {
             message.editOriginalEmbeds(MessageUtils.createInfoEmbed("Current Gateaway latency: " + BotConnection.getJda().getGatewayPing() + "ms\nResponse time: " + (System.currentTimeMillis() - time) + "ms").build()).queue();
         });
     }
-
-    @Override
-    public Permission neededPermission() {
-        return Permission.USE_SLASH_COMMANDS;
-    }
 }

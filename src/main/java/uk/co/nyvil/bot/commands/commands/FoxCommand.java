@@ -21,7 +21,7 @@ public class FoxCommand implements SlashCommand {
     private final Gson gson = new Gson();
 
     @Override
-    @SlashCommandAnnotation(name = "fox")
+    @SlashCommandAnnotation(name = "fox", neededPermission = Permission.USE_SLASH_COMMANDS)
     public void execute(SlashCommandExecutionInfo info) {
         try {
             final InputStream inputStream = new URL("https://randomfox.ca/floof").openStream();
@@ -33,11 +33,6 @@ public class FoxCommand implements SlashCommand {
         } catch (IOException e) {
             info.getEvent().replyEmbeds(MessageUtils.createErrorEmbed("Couldn't reach API to retrieve the picture. Please try again later!").build()).queue();
         }
-    }
-
-    @Override
-    public Permission neededPermission() {
-        return Permission.USE_SLASH_COMMANDS;
     }
 
     private String readAll(Reader rd) throws IOException {
