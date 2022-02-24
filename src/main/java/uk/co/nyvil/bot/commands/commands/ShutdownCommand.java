@@ -1,6 +1,5 @@
 package uk.co.nyvil.bot.commands.commands;
 
-import net.dv8tion.jda.api.Permission;
 import uk.co.nyvil.bot.commands.manager.SlashCommand;
 import uk.co.nyvil.bot.commands.manager.SlashCommandAnnotation;
 import uk.co.nyvil.bot.commands.status.SlashCommandExecutionInfo;
@@ -24,10 +23,5 @@ public class ShutdownCommand implements SlashCommand {
             info.getEvent().replyEmbeds(MessageUtils.createErrorEmbed("You don't have permission to execute this command!").build()).queue();
         }
 
-    }
-
-    @Override
-    public Permission neededPermission() {
-        return Permission.USE_SLASH_COMMANDS;
     }
 }

@@ -9,9 +9,7 @@ import uk.co.nyvil.bot.commands.status.SlashCommandExecutionInfo;
 import uk.co.nyvil.utils.MessageUtils;
 
 import java.io.*;
-import java.net.HttpURLConnection;
 import java.net.URL;
-import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.util.Random;
 
@@ -33,11 +31,6 @@ public class FoxCommand implements SlashCommand {
         } catch (IOException e) {
             info.getEvent().replyEmbeds(MessageUtils.createErrorEmbed("Couldn't reach API to retrieve the picture. Please try again later!").build()).queue();
         }
-    }
-
-    @Override
-    public Permission neededPermission() {
-        return Permission.USE_SLASH_COMMANDS;
     }
 
     private String readAll(Reader rd) throws IOException {
