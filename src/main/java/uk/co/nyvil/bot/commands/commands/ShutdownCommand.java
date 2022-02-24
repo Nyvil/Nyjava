@@ -1,6 +1,5 @@
 package uk.co.nyvil.bot.commands.commands;
 
-import net.dv8tion.jda.api.Permission;
 import uk.co.nyvil.bot.commands.manager.SlashCommand;
 import uk.co.nyvil.bot.commands.manager.SlashCommandAnnotation;
 import uk.co.nyvil.bot.commands.status.SlashCommandExecutionInfo;

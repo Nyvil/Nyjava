@@ -9,9 +9,7 @@ import uk.co.nyvil.bot.commands.status.SlashCommandExecutionInfo;
 import uk.co.nyvil.utils.MessageUtils;
 
 import java.io.*;
-import java.net.HttpURLConnection;
 import java.net.URL;
-import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.util.Random;
 
@@ -21,7 +19,7 @@ public class FoxCommand implements SlashCommand {
     private final Gson gson = new Gson();
 
     @Override
-    @SlashCommandAnnotation(name = "fox", neededPermission = Permission.USE_SLASH_COMMANDS)
+    @SlashCommandAnnotation(name = "fox")
     public void execute(SlashCommandExecutionInfo info) {
         try {
             final InputStream inputStream = new URL("https://randomfox.ca/floof").openStream();
