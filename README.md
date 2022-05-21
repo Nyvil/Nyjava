@@ -24,6 +24,7 @@ If not you can report it [here](https://github.com/Nyvil/Nyjava/issues)
 
 # Author(s)
 * **[Alexandros(@Nyvil)](https://github.com/Nyvil)** - initial work
+* **[@Technosword](https://github.com/Technosword)** - buttons
 
 # License
 This project is licensed under the Apache 2.0 License - see the [LICENSE](https://github.com/Nyvil/Nyjava/blob/stable/LICENSE) file for details.
