@@ -1,16 +1,14 @@
 # Nyjava
 Nyjava is a discord bot base that supports 🎉 Discord Slash Commands! 🎉
-### I'll see where I go with this, I might update it, I might not. Time will tell.
-For now though, it's free to use for everyone, and if you find a bug, feel free to open an issue on the GitHub [issue page](https://github.com/Nyvil/Nyjava/issues).
+### I'll update it when major changes to JDA are made, probably.
+When using the bot, please be mindful of the [License](https://github.com/Nyvil/Nyjava/blob/stable/LICENSE).
+If you happen to find any bugs, please report them on the [issue page](https://github.com/Nyvil/Nyjava/issues).
 
 # Getting started
-## Nyjava requires a MongoDB database to work. [MongoDB docs](https://docs.mongodb.com/manual/tutorial/getting-started/)
-
-After compiling and running the jar for the first time, it will ask you for your bots token and it will create a folder named "Bot" located in the same path</br> as the jar. 
-Open said folder, click on MongoDB.json and enter your database credentials. Afterwards restart the bot.
-
-## Important: 
-if you created the MongoDB user not in the admin database, go to the DatabaseConnection class and change the authSource string. 
+When running the bot, pass in the token of your bot as an argument.
+```
+java -jar Nyjava.jar <token>
+```
 
 # Bugs
 -/-

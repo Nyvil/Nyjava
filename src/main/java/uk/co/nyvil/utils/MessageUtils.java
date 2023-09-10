@@ -8,7 +8,7 @@ package uk.co.nyvil.utils;
 
 import net.dv8tion.jda.api.EmbedBuilder;
 import uk.co.nyvil.Bot;
-import uk.co.nyvil.bot.BotConnection;
+import uk.co.nyvil.bot.JdaService;
 
 import java.awt.*;
 import java.time.Instant;
@@ -47,7 +47,7 @@ public final class MessageUtils {
     public static EmbedBuilder createSuccessEmbed(String message) {
         EmbedBuilder embedBuilder = new EmbedBuilder();
         embedBuilder.setColor(BOT_COLOR_SUCCESS);
-        embedBuilder.setFooter(BotConnection.getJda().getSelfUser().getName(), BotConnection.getJda().getSelfUser().getAvatarUrl());
+        embedBuilder.setFooter(Bot.getInstance().getJdaService().getJda().get().getSelfUser().getName(), Bot.getInstance().getJdaService().getJda().get().getSelfUser().getAvatarUrl());
         embedBuilder.setTimestamp(Instant.now());
         embedBuilder.setDescription(message);
         return embedBuilder;
@@ -74,7 +74,7 @@ public final class MessageUtils {
     public static EmbedBuilder createErrorEmbed(String message) {
         EmbedBuilder embedBuilder = new EmbedBuilder();
         embedBuilder.setColor(BOT_COLOR_ERROR);
-        embedBuilder.setFooter(BotConnection.getJda().getSelfUser().getName(), BotConnection.getJda().getSelfUser().getAvatarUrl());
+        embedBuilder.setFooter(Bot.getInstance().getJdaService().getJda().get().getSelfUser().getName(), Bot.getInstance().getJdaService().getJda().get().getSelfUser().getAvatarUrl());
         embedBuilder.setTimestamp(Instant.now());
         embedBuilder.setDescription(message);
         return embedBuilder;
@@ -89,7 +89,7 @@ public final class MessageUtils {
     public static EmbedBuilder createInfoEmbed() {
         EmbedBuilder embedBuilder = new EmbedBuilder();
         embedBuilder.setColor(BOT_COLOR_INFO);
-        embedBuilder.setFooter(BotConnection.getJda().getSelfUser().getName(), BotConnection.getJda().getSelfUser().getAvatarUrl());
+        embedBuilder.setFooter(Bot.getInstance().getJdaService().getJda().get().getSelfUser().getName(), Bot.getInstance().getJdaService().getJda().get().getSelfUser().getAvatarUrl());
         embedBuilder.setTimestamp(Instant.now());
         return embedBuilder;
     }
@@ -103,7 +103,7 @@ public final class MessageUtils {
     public static EmbedBuilder createInfoEmbed(String message) {
         EmbedBuilder embedBuilder = new EmbedBuilder();
         embedBuilder.setColor(BOT_COLOR_INFO);
-        embedBuilder.setFooter(BotConnection.getJda().getSelfUser().getName(), BotConnection.getJda().getSelfUser().getAvatarUrl());
+        embedBuilder.setFooter(Bot.getInstance().getJdaService().getJda().get().getSelfUser().getName(), Bot.getInstance().getJdaService().getJda().get().getSelfUser().getAvatarUrl());
         embedBuilder.setTimestamp(Instant.now());
         embedBuilder.setDescription(message);
         return embedBuilder;
@@ -120,7 +120,7 @@ public final class MessageUtils {
         EmbedBuilder embedBuilder = new EmbedBuilder();
         embedBuilder.setColor(BOT_COLOR_INFO);
         embedBuilder.setTitle(title);
-        embedBuilder.setFooter(BotConnection.getJda().getSelfUser().getName(), BotConnection.getJda().getSelfUser().getAvatarUrl());
+        embedBuilder.setFooter(Bot.getInstance().getJdaService().getJda().get().getSelfUser().getName(), Bot.getInstance().getJdaService().getJda().get().getSelfUser().getAvatarUrl());
         embedBuilder.setTimestamp(Instant.now());
         embedBuilder.setDescription(message);
         return embedBuilder;
@@ -147,7 +147,7 @@ public final class MessageUtils {
     public static EmbedBuilder createAltInfoEmbed(String message) {
         EmbedBuilder embedBuilder = new EmbedBuilder();
         embedBuilder.setColor(BOT_COLOR_INFO_ALT);
-        embedBuilder.setFooter(BotConnection.getJda().getSelfUser().getName(), BotConnection.getJda().getSelfUser().getAvatarUrl());
+        embedBuilder.setFooter(Bot.getInstance().getJdaService().getJda().get().getSelfUser().getName(), Bot.getInstance().getJdaService().getJda().get().getSelfUser().getAvatarUrl());
         embedBuilder.setTimestamp(Instant.now());
         embedBuilder.setDescription(message);
         return embedBuilder;
@@ -174,7 +174,7 @@ public final class MessageUtils {
     public static EmbedBuilder createWarningEmbed(String message) {
         EmbedBuilder embedBuilder = new EmbedBuilder();
         embedBuilder.setColor(BOT_COLOR_WARNING);
-        embedBuilder.setFooter(BotConnection.getJda().getSelfUser().getName(), BotConnection.getJda().getSelfUser().getAvatarUrl());
+        embedBuilder.setFooter(Bot.getInstance().getJdaService().getJda().get().getSelfUser().getName(), Bot.getInstance().getJdaService().getJda().get().getSelfUser().getAvatarUrl());
         embedBuilder.setTimestamp(Instant.now());
         embedBuilder.setDescription(message);
         return embedBuilder;
@@ -188,15 +188,6 @@ public final class MessageUtils {
      */
     public static void setEmbedMessage(EmbedBuilder embedBuilder, String message) {
         embedBuilder.setDescription(message);
-    }
-
-    /**
-     * Method to log a message with the current date
-     *
-     * @param message message to be logged
-     */
-    public static void dateLog(String message) {
-        Bot.getLog().add("[" + new Date(System.currentTimeMillis()) + "] " + message);
     }
 
 }

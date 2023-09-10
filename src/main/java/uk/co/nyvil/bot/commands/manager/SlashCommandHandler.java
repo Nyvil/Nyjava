@@ -1,29 +1,41 @@
 package uk.co.nyvil.bot.commands.manager;
 
-import net.dv8tion.jda.api.events.interaction.SlashCommandEvent;
+import net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
-import org.jetbrains.annotations.NotNull;
 import uk.co.nyvil.Bot;
-import uk.co.nyvil.bot.commands.status.SlashCommandExecutionInfo;
+import uk.co.nyvil.bot.commands.status.SlashCommandRecord;
 import uk.co.nyvil.utils.MessageUtils;
+
+import java.util.Optional;
 
 public class SlashCommandHandler extends ListenerAdapter {
 
-    @Override
-    public void onSlashCommand(@NotNull SlashCommandEvent event) {
-        if(event.getGuild() == null) return;
-        if(event.getUser().isBot()) return;
-        if(event.getMember() == null) return;
 
-        Bot.getInstance().getCommandHandler().getSlashCommandMap().forEach((commandAnnotation, command) -> {
-            if(commandAnnotation.name().equalsIgnoreCase(event.getName())) {
-                if(event.getMember().hasPermission(commandAnnotation.neededPermission())) {
-                    SlashCommandExecutionInfo info = new SlashCommandExecutionInfo(command, event, event.getMember(), event.getTextChannel(), commandAnnotation, event.getOptions());
-                    command.execute(info);
-                } else {
-                    event.replyEmbeds(MessageUtils.createErrorEmbed("You don't have permission to execute this command! You're missing the `" + commandAnnotation.neededPermission().getName() + "` permission.").build()).queue();
-                }
-            }
-        });
+    @Override
+    public void onSlashCommandInteraction(SlashCommandInteractionEvent e) {
+        if (e.getGuild() == null) return;
+        if (e.getUser().isBot()) return;
+        if (e.getMember() == null) return;
+
+
+        Optional<SlashCommand> command = getCommand(e.getName());
+        if (command.isEmpty()) return;
+
+        if(command.get().neededPermission() != null && !e.getMember().hasPermission(command.get().neededPermission())) {
+            e.replyEmbeds(MessageUtils.createErrorEmbed("You don't have the permission to execute this command!").build()).setEphemeral(true).queue();
+        }
+
+        SlashCommandRecord record = new SlashCommandRecord(command.get(), e, e.getMember(), e.getChannel().asTextChannel(), e.getOptions());
+        command.get().execute(record);
+
     }
+
+
+    private Optional<SlashCommand> getCommand(String name) {
+        return Bot.getInstance().getCommandRegistry().getActiveCommands().stream().filter(command -> command.name().equalsIgnoreCase(name)).findFirst();
+    }
+
+
+
+
 }
