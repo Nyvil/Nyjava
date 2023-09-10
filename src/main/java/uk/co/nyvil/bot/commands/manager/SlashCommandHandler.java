@@ -23,6 +23,7 @@ public class SlashCommandHandler extends ListenerAdapter {
 
         if(command.get().neededPermission() != null && !e.getMember().hasPermission(command.get().neededPermission())) {
             e.replyEmbeds(MessageUtils.createErrorEmbed("You don't have the permission to execute this command!").build()).setEphemeral(true).queue();
+            return;
         }
 
         SlashCommandRecord record = new SlashCommandRecord(command.get(), e, e.getMember(), e.getChannel().asTextChannel(), e.getOptions());
